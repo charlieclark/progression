@@ -1,0 +1,99 @@
+/*splash*/
+
+#bottomRect{
+	position: absolute;
+	bottom: 0;
+	height: 30%;
+	width: 100%;
+	background-color: #f9e1b7;
+}
+
+#topRect {
+    width: 100%;
+    height: 70%;
+    top: 0;
+    background: url('../images/elements/background-landing.png') no-repeat center bottom;
+    background-size: cover;
+}
+
+#houseContainer{
+	position: absolute;
+	height: 200px;
+	bottom: 25%;
+	white-space: nowrap;
+}
+
+#splash {
+    width: 100%;
+    height: 100%;
+}
+
+.house{
+	position: relative;
+	cursor: pointer;
+	float: left;
+	height:100%;
+	width: 100px;
+}
+
+.house .text{
+	width : 90%;
+}
+
+.houseBase , .houseMouseover , .textArea , .textAreaHover{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+
+.houseMouseover , .textAreaHover{
+	z-index: 9;
+	display: none;
+
+}
+
+
+/*specific house*/
+
+#house0{
+	width: 98px;
+}
+
+#house1{
+	width: 159px;
+}
+
+#house2{
+	width: 86px;
+}
+
+#house3{
+	width: 133px;
+}
+
+#house4{
+	width: 152px;
+}
+
+#house5{
+	width: 152px;
+}
+
+#house6{
+	width: 62px;
+}
+
+#house7{
+	width: 147px;
+}
+
+#house8{
+	width: 111px;
+}
+
+
+
+
