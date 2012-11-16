@@ -1,7 +1,7 @@
 //global vars
 
 var templateNames = ["house"];
-var mainPath = "/~williamclark/progression/www/";
+var mainPath = document.URL;
 
 var templates = {};
 var numTemplatesLoaded = 0;
