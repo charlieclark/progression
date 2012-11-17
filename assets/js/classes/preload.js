@@ -22,8 +22,8 @@ function preloadClass(){
 
 		switch(type)
 		{
-			case "houses":
-				houses()
+			case "splash":
+				splash()
 				break;
 		}
 
@@ -36,13 +36,10 @@ function preloadClass(){
 		preloadTracker.houses = 0;
 	}
 
-	function title(){
 
-	}
+	function splash(){
 
-	function houses(){
-
-		var elToLoad = 36;
+		var elToLoad = (SPLASH.numHouses * 4) + 3;
 
 		preloadTracker.houses++;
 

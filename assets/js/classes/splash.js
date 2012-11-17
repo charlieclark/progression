@@ -2,10 +2,15 @@ var SPLASH = new splashClass();
 
 
 function splashClass(){
+
+	//setting self
+	var self = this;
+
 	//public vars
+	this.numHouses = 9;
+
 
 	//private const
-	var numHouses = 9;
 	var houseArray =[98,159,86,133,152,152,62,147,111];
 
 	//private var
@@ -15,9 +20,10 @@ function splashClass(){
 
 	//public methods
 	this.init = function(){
+
 		buildHouses();
 		loadHouses();
-		// loadTitle();
+		loadTitle();
 	}
 
 	this.resize = function(){
@@ -29,8 +35,9 @@ function splashClass(){
 	function buildHouses()
 	{
 
-		for( var i = 0 ; i < numHouses ; i++)
+		for( var i = 0 ; i < self.numHouses ; i++)
 		{
+			console.log("getting here");
 			var compiled = _.template(templates.house , {name : "house"+i} );
 			$("#houseContainer").append(compiled);
 			houseWidthTotal += houseArray[i]
@@ -83,13 +90,15 @@ function splashClass(){
 
 	function loadHouses()
 	{		
-		for( var i = 0 ; i < numHouses ; i++)
+		for( var i = 0 ; i < self.numHouses ; i++)
 		{
-			var baseHouseURL = mainPath + "assets/images/elements/houses/House-" + (i+1) +".png";
-			var hoverHouseURL = mainPath + "assets/images/elements/houses/House-" + (i+1) +"-rollover.png";
+			var baseHouseURL = elementPath + "houses/House-" + (i+1) +".png";
+			var hoverHouseURL = elementPath + "houses/House-" + (i+1) +"-rollover.png";
 
-			var baseTextURL = mainPath + "assets/images/elements/house-text/House-" + (i+1) + "-text.png";
-			var hoverTextURL = mainPath + "assets/images/elements/house-text/House-" + (i+1) + "-text-rollover.png";
+			var baseTextURL = elementPath + "house-text/House-" + (i+1) + "-text.png";
+			var hoverTextURL = elementPath + "house-text/House-" + (i+1) + "-text-rollover.png";
+
+			console.log(hoverTextURL);
 
 			var imgBase = new Image;
 			var imgHover = new Image;
@@ -130,8 +139,29 @@ function splashClass(){
 			$(".house").eq(index).find(".houseMouseover").css("background-image" , "url(" + img.src +")");
 		}
 		
-		PRELOAD.preload("houses");
+		PRELOAD.preload("splash");
 
+	}
+
+	function loadTitle()
+	{
+		 var numTitle = 3;
+
+		 for( var i = 0 ; i < numTitle ; i++)
+		 {
+		 	var tempURL = elementPath + "title" + (i+1) + ".png";
+		 	console.log(tempURL);
+		 	var tempImg = new Image;
+		 	tempImg.onload = function(){
+
+		 		 var tempId = "title" + this.tag;
+		 		 $("<div class='title' id=" + tempId + "></div>").appendTo("#splashTitle");
+		 		PRELOAD.preload("splash");
+		 	}
+		 	tempImg.tag = i;
+		 	tempImg.src = tempURL;
+		 }
+		
 	}
 
 	function loadText(img)
@@ -148,7 +178,7 @@ function splashClass(){
 			$(".house").eq(index).find(".textAreaHover").css("background-image" , "url(" + img.src +")");
 		}
 		
-		PRELOAD.preload("houses");
+		PRELOAD.preload("splash");
 
 	}
 

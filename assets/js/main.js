@@ -3,6 +3,10 @@
 var templateNames = ["house"];
 var mainPath = document.URL;
 
+//paths
+
+var elementPath = mainPath + "assets/images/elements/";
+
 var templates = {};
 var numTemplatesLoaded = 0;
 
