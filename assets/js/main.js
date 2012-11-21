@@ -45,6 +45,8 @@ function resize(){
 	CONFIG.windowHeight = $(window).height();
 	CONFIG.windowWidth = $(window).width();
 
+	$("#container").width(CONFIG.windowWidth);
+
 	//resizing classes
 	SPLASH.resize();
 }

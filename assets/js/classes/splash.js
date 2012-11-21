@@ -30,6 +30,32 @@ function splashClass(){
 		resizeHouses();
 	}
 
+	//preload finished
+
+	this.finishedLoading = function()
+	{
+
+		console.log(" called ")
+
+		//adding mouseovers to houses
+		//adding mouseEvents
+		var houseEl = $("#houseContainer .house");
+	
+		//houses
+
+		houseEl.hover(
+			function(){
+				houseMouseover($(this).index());
+			},
+			function(){
+				houseMouseout($(this).index());
+			}
+		);
+
+
+	}
+
+
 	//private methods
 
 	function buildHouses()
@@ -51,21 +77,6 @@ function splashClass(){
 			 
 		}
 
-		//adding mouseEvents
-		var houseEl = $("#houseContainer .house");
-		var textEl = $("#houseContainer .house .textArea");
-		var combined = houseEl.add(textEl);
-
-		combined.hover(
-			function(){
-				houseMouseover($(this).index());
-			},
-			function(){
-				houseMouseout($(this).index());
-			}
-		);
-
-
 
 	}
 
@@ -85,7 +96,7 @@ function splashClass(){
 		var newMargin = (newHeight / houseHeight) * houseMargin;
 		$("#houseContainer .house.notFirst").css("margin-left" , -newMargin);
 
-		$("#houseContainer .text").css("top" , newHeight + 10);
+		$("#houseContainer .textAreaContainer").css("top" , newHeight);
 	}
 
 	function loadHouses()
@@ -128,6 +139,9 @@ function splashClass(){
 
 	function loadHouse(img)
 	{		
+
+		console.log("loadHouse " + img.tempInfo.id);
+
 		var index = img.tempInfo.id;
 		var type = img.tempInfo.type;
 		if(type == "base")
@@ -155,7 +169,11 @@ function splashClass(){
 		 	tempImg.onload = function(){
 
 		 		 var tempId = "title" + this.tag;
-		 		 $("<div class='title' id=" + tempId + "></div>").appendTo("#splashTitle");
+		 		 var newEl =  $("<div class='title' id=" + tempId + "></div>");
+		 		 newEl.appendTo("#splashTitle");
+		 		 newEl.html( $("<img src='" + this.src +  "'/>") )
+
+
 		 		PRELOAD.preload("splash");
 		 	}
 		 	tempImg.tag = i;
@@ -183,18 +201,20 @@ function splashClass(){
 	}
 
 
+
 	//mouse stuff
 
 	function houseMouseover(index)
 	{
-		$("#houseContainer .house").eq(index).find(".houseMouseover").stop().fadeIn("slow");
-		$("#houseContainer .house").eq(index).find(".textAreaHover").stop().fadeIn("slow");
+		console.log("mouseover " + index);
+		$("#houseContainer .house").eq(index).find(".houseMouseover").fadeIn("fast");
+		$("#houseContainer .house").eq(index).find(".textAreaHover").fadeIn("fast");
 	}
 
 	function houseMouseout(index)
 	{
-		$("#houseContainer .house").eq(index).find(".houseMouseover").fadeOut("slow");
-		$("#houseContainer .house").eq(index).find(".textAreaHover").fadeOut("slow");
+		$("#houseContainer .house").eq(index).stop().find(".houseMouseover").fadeOut("fast");
+		$("#houseContainer .house").eq(index).stop().find(".textAreaHover").fadeOut("fast");
 	}
 
 

@@ -39,7 +39,7 @@ function preloadClass(){
 
 	function splash(){
 
-		var elToLoad = (SPLASH.numHouses * 4) + 3;
+		var elToLoad = (SPLASH.numHouses * 4) + 3; // houses + titles
 
 		preloadTracker.houses++;
 
@@ -47,7 +47,7 @@ function preloadClass(){
 
 		if(preloadTracker.houses == elToLoad)
 		{
-			console.log("houses loaded");
+			SPLASH.finishedLoading();
 		}
 
 	}
