@@ -168,14 +168,16 @@ function splashClass(){
 		 	var tempImg = new Image;
 		 	tempImg.onload = function(){
 
-		 		 var tempId = "title" + this.tag;
-		 		 var newEl =  $("<div class='title' id=" + tempId + "></div>");
-		 		 newEl.appendTo("#splashTitle");
-		 		 newEl.html( $("<img src='" + this.src +  "'/>") )
-
-
+		 			 		
+		 		var tempEl = $("#splashTitle .title").eq(this.tag);
+		 		tempEl.html( $("<img src='" + this.src +  "'/>") );
 		 		PRELOAD.preload("splash");
 		 	}
+
+		 	var tempId = "title" + i;	
+		 	 var newEl =  $("<div class='title' id=" + tempId + "></div>");
+		 	 newEl.appendTo("#splashTitle");
+
 		 	tempImg.tag = i;
 		 	tempImg.src = tempURL;
 		 }
@@ -207,8 +209,8 @@ function splashClass(){
 	function houseMouseover(index)
 	{
 		console.log("mouseover " + index);
-		$("#houseContainer .house").eq(index).find(".houseMouseover").fadeIn("fast");
-		$("#houseContainer .house").eq(index).find(".textAreaHover").fadeIn("fast");
+		$("#houseContainer .house").eq(index).find(".houseMouseover").fadeTo("fast" , 0.8);
+		$("#houseContainer .house").eq(index).find(".textAreaHover").fadeTo("fast" , 0.8);
 	}
 
 	function houseMouseout(index)

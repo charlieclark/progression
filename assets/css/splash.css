@@ -3,14 +3,14 @@
 #bottomRect{
 	position: absolute;
 	bottom: 0;
-	height: 30%;
+	min-height: 20%;
 	width: 100%;
 	background-color: #f9e1b7;
 }
 
 #topRect {
     width: 100%;
-    height: 70%;
+    height: 80%;
     top: 0;
     background: url('../images/elements/background-landing.png') no-repeat center bottom;
     background-size: cover;
@@ -19,7 +19,7 @@
 #houseContainer{
 	position: absolute;
 	height: 200px;
-	bottom: 25%;
+	bottom: 15%;
 	white-space: nowrap;
 }
 
@@ -37,7 +37,8 @@
 }
 
 .house .text{
-	width : 90%;
+	width: 100%;
+	margin-left: -50%;
 }
 
 .houseBase , .houseMouseover , .textArea , .textAreaHover{
@@ -50,7 +51,8 @@
 
 
 .textAreaContainer{
-	width: 100%;
+	width: 60%;
+	left: 50%;
 	height: 100%;
 	position: absolute;
 
@@ -66,23 +68,38 @@
 
 #splashTitle{
 	position: absolute;
-	left: 50%;
 	width: 100%;
 
+	margin-left: -70px;
 }
 
 .title{
-	position: absolute;
-	display: inline-block;
-	height: 100px;
+	width: 100%;
+	display: block;
+	margin: auto;
+	text-align: center;
 	
 }
 
 .title img {
-    width: 100%;
-    position: relative;
-    left: -50%;
+    height: 100%;
+    display: inline-block;
 }
+
+#title0 {
+    height: 140px;
+    margin: 15px 0 10px 0;
+}
+#title1 {
+    height: 43px;
+    margin: -41px 0 0 178px;
+}
+#title2 {
+    height: 79px;
+    margin: 14px 0 0 90px;
+}
+
+
 
 /*specific house*/
 
