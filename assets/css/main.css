@@ -2,3 +2,287 @@
 	position: relative;
 	overflow: hidden;
 }
+
+.section{
+	padding-top: 30px;
+	position: relative;
+	margin-top: 170px;
+}
+.standard-container{
+	width: 1200px;
+	height: 100%;
+	margin: auto;
+}
+
+/*navigation*/
+
+#navigation{
+	border-bottom: solid 2px black;
+	position: fixed;
+	background-color: white;
+	width: 100%;
+	z-index: 990;
+}
+
+#nav-container{
+	width: 1080px;
+	margin: auto;
+	position: relative;
+	height: 168px;
+	overflow: hidden;
+}
+
+#nav-houses{
+	width: 720px;
+	position: absolute;
+	left: 388px;
+}
+
+#nav-logo{
+	position: absolute;
+	height: 100%;
+	width: 300px;
+	background: url("../images/elements/nav-title.png") no-repeat 0px 30px;
+	background-repeat: no-repeat;
+}
+
+/*modal*/
+
+#modal{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 997;
+}
+
+#modal-container{
+	position: absolute;
+	z-index: 999;
+}
+
+#modal-background{
+	width: 100%;
+	height:100%;
+	background-color: black;
+	opacity: 0.5;
+	position: absolute;
+	z-index: 998;
+}
+
+/*album*/
+
+#album{
+	height: 100%;
+	background: url("../images/elements/album-background.jpg");
+
+}
+#album-gallery{
+	width: 800px;
+	height:1000px;
+	position: absolute;
+	right: 0;
+	overflow: auto;
+}
+
+#album-image-sequence{
+	width: 250px;
+	height: 250px;
+	position: absolute;
+	top: 190px;
+}
+
+.gallery-item{
+    width: 140px;	
+    height: 140px;
+    background-color: black;
+    float: left;
+    margin: 10px;
+    overflow: hidden;
+}
+
+#album-titles{
+    position: absolute;
+
+    width: 400px;
+    height: 275px;
+    top: 0;
+}
+
+#album-titles .album-title{
+	
+}
+
+#album-titles .album-title.one{
+	background: url("../images/elements/titles/album-title1.png") no-repeat;
+    width: 100%;
+    height: 200px;
+}
+
+#album-titles .album-title.two{
+	background: url("../images/elements/titles/album-title2.png") no-repeat;
+    width: 165px;
+    height: 70px;
+    float: left;
+}
+
+#album-titles .album-title.three{
+	background: url("../images/elements/titles/album-title3.png") no-repeat;
+    width: 230px;
+    height: 70px;
+    float: left;
+}
+
+/*thank you*/
+
+#thankyou{
+	height: 1000px;
+}
+
+#pen{
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	background-color: red;
+}
+
+#thankyou-title{
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	background-color: blue;
+}
+
+/*contact*/
+#contact{
+	height: 510px;
+}
+#contact-container{
+	width: 1000px;
+	height: 100%;
+	background-color: blue;
+	position: relative;
+	margin: auto;
+}
+#envelope-front{
+	position: absolute;
+	width: 100%;
+	height: 150px;
+	background-color: red;
+	bottom: 0;
+	z-index: 10;
+}
+
+#contact .letter{
+	position: absolute;
+}
+
+#contact #letter1{
+	width: 650px;
+	height: 480px;
+	left: 0;
+	top: 180px;
+	background-color: grey;
+	z-index: 8;
+}
+
+#contact #letter2{
+	width: 450px;
+	height: 320px;
+	top: 25px;
+	left:280px;	
+	background-color: white;
+	z-index: 7;
+}
+
+#contact #letter3{
+	height: 630px;
+	width: 472px;
+	top: 80px;
+	left: 525px;
+	background-color: teal;
+	z-index: 9;
+}
+
+/*filmmakers*/
+
+#filmmakers {
+    height: 715px;
+}
+
+#hammer {
+    width: 380px;
+    height: 500px;
+    position: absolute;
+    background-color: red;
+    z-index: 8;
+}
+#filmmaker-side-container {
+    width: 700px;
+    height: 690px;
+    position: absolute;
+    left: 524px;
+}
+
+#image-frame {
+    position: absolute;
+    width: 500px;
+    height: 640px;
+    background-color: blueviolet;
+}
+#image-foregroud {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 5;
+}
+#image-background-container {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.filmaker-title.one {
+    width: 490px;
+    height: 100px;
+    background-color: grey;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.filmaker-title.two {
+    width: 140px;
+    height: 50px;
+    margin-left: 173px;
+    float: left;
+    background-color: grey;
+}
+.filmaker-title.three {
+    width: 220px;
+    height: 45px;
+    float: left;
+    margin-left: 40px;
+    background-color: grey;
+}
+#filmmaker-titles {
+    height: 175px;
+}
+#filmaker-info-container {
+    width: 100%;
+    height: 520px;
+    background-color: grey;
+}
+
+.frame-container {
+    display: inline;
+    white-space: nowrap;
+}
+.frame-container img {
+    width: 100%;
+}
+
+
+
+

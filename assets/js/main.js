@@ -2,6 +2,7 @@
 
 var templateNames = ["house"];
 var mainPath = document.URL;
+var assetPath = mainPath + "assets" ;
 
 //paths
 
@@ -18,6 +19,8 @@ $(document).ready(function(){
 });
 
 function preInit(){
+
+	$("#container").hide();
 	loadTemplates();
 
 	//general listeners
@@ -31,7 +34,17 @@ function init(){
 
 	//initializing classes
 	PRELOAD.init();
-	SPLASH.init();	
+	PRELOAD2.init();
+	SPLASH.init();
+	ALBUM.init();
+	CONTACT.init();
+	FILM.init();
+
+	//initital hides
+	$("#modal").hide();
+
+	//general mouse handlers
+	$("#modal-background").click(function(){ closeModal(); });
 
 	//forced resize
 	resize();
@@ -41,6 +54,7 @@ function init(){
 //resize logic
 function resize(){
 
+
 	//main width and height
 	CONFIG.windowHeight = $(window).height();
 	CONFIG.windowWidth = $(window).width();
@@ -49,6 +63,40 @@ function resize(){
 
 	//resizing classes
 	SPLASH.resize();
+}
+
+function resizeImageToBounds(imgW , imgH , boundW , boundH ){
+
+		var newWidth;
+        var newHeight;
+   
+
+        //fitting image to smallest orientation
+        var whRatio = imgW - imgH;
+
+        if(whRatio > 0)
+        {
+    		newWidth = boundW;
+    		newHeight = imgH / (imgW/newWidth);
+        }
+        else
+        {
+            newHeight = boundH;
+            newWidth = imgW / (imgH/newHeight);
+        }
+              
+        return { "h" : newHeight , "w":newWidth }
+
+}
+
+function centerImageCalc(imgW , imgH , boundW , boundH){
+
+	var newL = (boundW - imgW) / 2;
+	var newH = (boundH - imgH) / 2;
+
+	var tempObj = { "left" : newL , "top" : newH }
+	return tempObj
+
 }
 
 
@@ -77,4 +125,36 @@ function templatesLoaded(){
 	{
 		init();
 	}
+}
+
+//modal
+
+function modalImage(img){
+
+	var maxSize = 500;
+	var imgRaw = img[0];
+
+	var dimObj = resizeImageToBounds(imgRaw.width , imgRaw.height , maxSize , maxSize );
+	var centerObj = centerImageCalc(dimObj.w , dimObj.h , CONFIG.windowWidth , CONFIG.windowHeight);
+
+
+	$("#modal-container").html( img ).css({
+		top: centerObj.top,
+		left: centerObj.left
+	});
+	$("#modal-container").find("img").css({
+		width: dimObj.w,
+		height: dimObj.h		
+	});
+	openModal();
+
+}	
+
+function closeModal(){
+	$("#modal").hide();
+	$("#modal-container").empty();
+}
+
+function openModal(){
+	$("#modal").show();
 }

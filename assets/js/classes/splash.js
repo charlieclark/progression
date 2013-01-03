@@ -18,12 +18,25 @@ function splashClass(){
 	var houseHeight = 190;
 	var houseMargin = 15;
 
+	var currentPageEl;
+	var currentPageView;
+
+	var navShowing = false;
+
 	//public methods
 	this.init = function(){
+
+		currentPageView = SPLASH;
+		currentPageEl = $("#splash");
+		hidePages();
+		animateIn("splash");
+		navigationToggle(false);
 
 		buildHouses();
 		loadHouses();
 		loadTitle();
+
+		
 	}
 
 	this.resize = function(){
@@ -35,11 +48,22 @@ function splashClass(){
 	this.finishedLoading = function()
 	{
 
-		console.log(" called ")
+		$("#container").fadeIn("slow");
+
+
+		//creating navigation
+
+		$("#nav-houses").html(  $("#houseContainer").html() );
+
+		$("#nav-logo").click(function(){ animateOut("splash") });
+
+
+
 
 		//adding mouseovers to houses
 		//adding mouseEvents
 		var houseEl = $("#houseContainer .house");
+		var navEl = $("#nav-container .house");
 	
 		//houses
 
@@ -52,18 +76,145 @@ function splashClass(){
 			}
 		);
 
+		houseEl.click(function(){
+			animateOut( $(this).index() );
+		});
+
+		//nav house
+
+		navEl.hover(
+			function(){
+				houseMouseover($(this).index());
+			},
+			function(){
+				houseMouseout($(this).index());
+			}
+		);
+
+		navEl.click(function(){
+			animateOut( $(this).index() );
+		});
+
+		//resizing
+
+		resizeNavHouses(700);
+		resize();
+		resize();
 
 	}
 
 
 	//private methods
 
+
+	function animateIn(index){
+		gotoPage(index);
+	}
+
+	function animateOut(index){
+
+		var delay = 1000;
+
+		$("#houseContainer").animate({
+			"bottom" : -500
+		} , delay/2 , function(){
+			$("#splashTitle").animate({
+			"top" : -500
+			} , delay/2); 
+
+		}); 
+
+		
+		setTimeout( function(){ gotoPage(index) } , delay );
+	}
+
+	function hidePages(){
+		$(".section").hide();
+	}
+
+	function gotoPage(index){
+
+		SEQUENCE.resetSequence();
+
+		var newPageEl;
+		var newPageView;
+
+		
+		switch(index){
+			case "splash":
+				newPageEl = $("#splash");
+				newPageView = SPLASH;
+				break
+			case 3:
+				newPageEl = $("#filmmakers");
+				newPageView = FILM;
+				break
+			case 4:
+				newPageEl = $("#album");
+				newPageView = ALBUM;
+				break
+			case 6:
+				newPageEl = $("#thankyou");
+				newPageView = THANK;
+				break
+			case 7:
+				newPageEl = $("#contact");
+				newPageView = CONTACT;
+				break
+
+
+		}
+
+		//changing old stuff
+		if(index != "splash")
+		{
+			navigationToggle(true);
+			newPageView.show();
+		}
+		else
+		{
+			navigationToggle(false);
+		}
+
+		currentPageEl.hide();
+		newPageEl.show();
+
+		currentPageEl = newPageEl;
+		currentPageView = newPageView;
+
+	}
+
+	function navigationToggle(show){
+
+		if(show != undefined)
+		{
+			navShowing = show;
+		}
+		else
+		{
+			navShowing = !navShowing;
+		}
+		
+
+		if(navShowing)
+		{
+			$("#navigation").show();
+		}
+		else
+		{
+			$("#navigation").hide();
+		}
+
+
+	}
+
+
+
 	function buildHouses()
 	{
 
 		for( var i = 0 ; i < self.numHouses ; i++)
 		{
-			console.log("getting here");
 			var compiled = _.template(templates.house , {name : "house"+i} );
 			$("#houseContainer").append(compiled);
 			houseWidthTotal += houseArray[i]
@@ -80,13 +231,46 @@ function splashClass(){
 
 	}
 
+	function resizeNavHouses(width){
+
+		for(var i = 0 ; i < houseArray.length ; i++)
+		{
+			var newWidth = (houseArray[i] / houseWidthTotal) * width;
+
+			$("#nav-houses .house").eq(i).css("width" , newWidth);
+		}
+
+		$("#nav-houses").css("width" , width + 20);
+
+		//resizing height
+		var newHeight = ( width / houseWidthTotal ) * houseHeight ;
+		var newMargin = 50;
+
+		$("#nav-houses").css({
+			"height" : newHeight ,
+			"padding-top" : newMargin
+		});
+
+		$("#nav-houses .textAreaContainer").css({
+			"top" : -30
+		});
+
+		//resizing margin
+		var newMargin = (newHeight / houseHeight) * houseMargin;
+		$("#nav-houses .house.notFirst").css("margin-left" , -newMargin);
+
+
+	}
+
 	function resizeHouses()
 	{
+
 		for(var i = 0 ; i < houseArray.length ; i++)
 		{
 			var newWidth = (houseArray[i] / houseWidthTotal) * CONFIG.windowWidth;
 			$("#houseContainer .house").eq(i).css("width" , newWidth);
 		}
+
 
 		//resizing height
 		var newHeight = ( $("#houseContainer").width() / houseWidthTotal ) * houseHeight ;
@@ -108,8 +292,6 @@ function splashClass(){
 
 			var baseTextURL = elementPath + "house-text/House-" + (i+1) + "-text.png";
 			var hoverTextURL = elementPath + "house-text/House-" + (i+1) + "-text-rollover.png";
-
-			console.log(hoverTextURL);
 
 			var imgBase = new Image;
 			var imgHover = new Image;
@@ -140,8 +322,6 @@ function splashClass(){
 	function loadHouse(img)
 	{		
 
-		console.log("loadHouse " + img.tempInfo.id);
-
 		var index = img.tempInfo.id;
 		var type = img.tempInfo.type;
 		if(type == "base")
@@ -164,7 +344,6 @@ function splashClass(){
 		 for( var i = 0 ; i < numTitle ; i++)
 		 {
 		 	var tempURL = elementPath + "title" + (i+1) + ".png";
-		 	console.log(tempURL);
 		 	var tempImg = new Image;
 		 	tempImg.onload = function(){
 
@@ -208,15 +387,37 @@ function splashClass(){
 
 	function houseMouseover(index)
 	{
-		console.log("mouseover " + index);
-		$("#houseContainer .house").eq(index).find(".houseMouseover").fadeTo("fast" , 0.8);
-		$("#houseContainer .house").eq(index).find(".textAreaHover").fadeTo("fast" , 0.8);
+		var el;
+
+		if(navShowing)
+		{
+			console.log("show nav");
+			el = $("#nav-container");
+		}
+		else
+		{
+			el = $("#houseContainer");
+		}
+
+		el.find(".house").eq(index).find(".houseMouseover").fadeTo("fast" , 0.8);
+		el.find(".house").eq(index).find(".textAreaHover").fadeTo("fast" , 0.8);
 	}
 
 	function houseMouseout(index)
 	{
-		$("#houseContainer .house").eq(index).stop().find(".houseMouseover").fadeOut("fast");
-		$("#houseContainer .house").eq(index).stop().find(".textAreaHover").fadeOut("fast");
+		var el;
+
+		if(navShowing)
+		{
+			el = $("#nav-container");
+		}
+		else
+		{
+			el = $("#houseContainer");
+		}
+
+		el.find(".house").eq(index).stop().find(".houseMouseover").fadeOut("fast");
+		el.find(".house").eq(index).stop().find(".textAreaHover").fadeOut("fast");
 	}
 
 

@@ -43,8 +43,6 @@ function preloadClass(){
 
 		preloadTracker.houses++;
 
-		console.log(preloadTracker.houses);
-
 		if(preloadTracker.houses == elToLoad)
 		{
 			SPLASH.finishedLoading();

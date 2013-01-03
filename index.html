@@ -8,9 +8,17 @@
 
 	<!--classes-->
 	<script src="assets/js/classes/preload.js"></script>
+	<script src="assets/js/classes/preload2.js"></script>
+	<script src="assets/js/classes/imageLoader.js"></script>
 	<script src="assets/js/classes/splash.js"></script>
+	<script src="assets/js/classes/album.js"></script>
+	<script src="assets/js/classes/sequenceClass.js"></script>
+	<script src="assets/js/classes/thankyou.js"></script>
+	<script src="assets/js/classes/contact.js"></script>
+	<script src="assets/js/classes/filmmaker.js"></script>
 
 	<!-- main -->
+	<script src="assets/js/assetData.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/config.js"></script>
 
@@ -25,11 +33,73 @@
 
 	<div id="container">
 
+		<section id="navigation">
+			<div id="nav-container">
+				<div id="nav-logo"> </div>
+				<div id="nav-houses"> </div>
+			</div>		
+			
+		</section>
+
 		<section id ="splash">
 			<div id="splashTitle"></div>
 			<div id="bottomRect"> </div>
 			<div id="topRect"> </div>
 			<div id="houseContainer"></div>	
+		</section>
+
+		<section id="album" class="section">
+			<div id="album-gallery"> </div>
+			<div id="album-image-sequence"> </div>
+			<div id="album-titles">
+				<div class="album-title one">	</div>
+				<div class="album-title two">	</div>
+				<div class="album-title three">	</div>
+			</div>
+		</section>
+
+		<section id="thankyou" class="section" >
+			<div id="pen"></div>
+			<div id="thankyou-title"></div>
+		</section>
+
+		<section id="filmmakers" class="section">
+			<div id="filmmakers-container" class="standard-container">
+
+				<div id="hammer"></div>
+				<div id="image-frame">
+					<div id="image-foregroud"></div>
+					<div id="image-background-container"></div>
+				</div>
+				<div id="filmmaker-side-container">
+
+					<div id="filmmaker-titles">
+						<div class="filmaker-title one">	</div>
+						<div class="filmaker-title two">	</div>
+						<div class="filmaker-title three">	</div>
+					</div>
+					<div id="filmaker-info-container">
+						<div id="filmaker-info-buttons"> </div>
+					</div>
+				</div>
+			</div>
+
+			
+		</section>
+
+		<section id="contact" class="section" >
+			<div id="contact-container">
+				<div id="envelope-front"></div>
+				<div id="letter1" class="letter"></div>
+				<div id="letter2" class="letter"></div>
+				<div id="letter3" class="letter"></div>
+				<div id="envelope-back"></div>
+			</div>			
+		</section>
+
+		<section id="modal">
+			<div id="modal-container"></div>
+			<div id="modal-background"></div>
 		</section>
 
 	</div>
